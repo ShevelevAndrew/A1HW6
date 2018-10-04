@@ -31,11 +31,9 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_detail);
-
         Workout workout = new Workout("Подтягивания", "Подтягивания на перекладине", 0, new Date(), 0);
         initGUI(workout);
         addListeners();
-
     }
 
     private void addListeners() {
