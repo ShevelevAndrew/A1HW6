@@ -2,6 +2,7 @@ package ru.vavtech.septemberworkout.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         Workout workout = new Workout("Подтягивания", "Подтягивания на перекладине", 0, new Date(), 0);
         initGUI(workout);
         addListeners();
+
     }
 
     private void addListeners() {
@@ -50,6 +52,13 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        saveRecordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
