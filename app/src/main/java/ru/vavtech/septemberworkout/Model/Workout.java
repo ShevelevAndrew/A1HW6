@@ -13,7 +13,7 @@ public class Workout {
     private Date recordDate;
     private int recordWeight;
 
-    public Workout(String title) {
+    public Workout(String жим, String title, CharSequence text, Date recordDate, int progress) {
         this.title = title;
     }
 

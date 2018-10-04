@@ -59,7 +59,13 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         saveRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if ((Integer.parseInt(recordWeight.getText().toString()) * Integer.parseInt(recordRepsCount.getText().toString())) <
+                        (weightSeekBar.getProgress() * Integer.parseInt(repsCountEditText.getText().toString())) ) {
+                    Workout workoutNewRec = new Workout("Жим", "Жим лежа",
+                            Integer.parseInt(repsCountEditText.getText().toString()), new Date(),
+                            weightSeekBar.getProgress());
+                    initGUI(workoutNewRec);
+                }
             }
         });
     }
@@ -79,6 +85,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         weight = findViewById(R.id.workout_detail_weight);
         weightSeekBar = findViewById(R.id.workout_detail_weight_seek_bar);
         repsCountEditText = findViewById(R.id.workout_detail_reps_count_edit_text);
+
         saveRecordButton = findViewById(R.id.workout_detail_save_button);
     }
 
