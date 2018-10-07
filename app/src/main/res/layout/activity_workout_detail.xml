@@ -136,6 +136,13 @@
                     android:text="@string/kg" />
             </LinearLayout>
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:spinnerMode="dialog"
+                android:layout_height="wrap_content">
+            </Spinner>
+
             <SeekBar
                 android:id="@+id/workout_detail_weight_seek_bar"
                 android:layout_width="match_parent"
