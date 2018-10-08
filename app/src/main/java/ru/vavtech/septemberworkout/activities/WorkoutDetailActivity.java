@@ -31,6 +31,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     private Button saveRecordButton;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,17 +88,19 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
         saveRecordButton = findViewById(R.id.workout_detail_save_button);
 
-        String[] data = {getString(R.string.pulling_up), getString(R.string.squat), getString(R.string.barbell_bench_press)};
+        final String[] data = {getString(R.string.pulling_up), getString(R.string.squat), getString(R.string.barbell_bench_press)};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
         spinner.setPrompt(getString(R.string.сhoose_exercise));
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Toast.makeText(getBaseContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
+                title.setText(data[position]);
+               // Toast.makeText(getBaseContext(), "Position = " + data[position], Toast.LENGTH_SHORT).show();
 
             }
             @Override
