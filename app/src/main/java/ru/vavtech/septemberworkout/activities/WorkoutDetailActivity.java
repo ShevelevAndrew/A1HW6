@@ -110,7 +110,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                 // Toast.makeText(getBaseContext(), "Position = " + data[position], Toast.LENGTH_SHORT).show();
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
             }
