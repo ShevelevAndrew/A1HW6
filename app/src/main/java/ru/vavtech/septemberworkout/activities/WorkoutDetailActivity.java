@@ -1,7 +1,7 @@
 package ru.vavtech.septemberworkout.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Date;
 
@@ -58,12 +57,14 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         saveRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((Integer.parseInt(recordWeight.getText().toString()) * Integer.parseInt(recordRepsCount.getText().toString())) <
-                        (weightSeekBar.getProgress() * Integer.parseInt(repsCountEditText.getText().toString())) ) {
-                    Workout workoutNewRec = new Workout("Жим", "Жим лежа",
-                            Integer.parseInt(repsCountEditText.getText().toString()), new Date(),
-                            weightSeekBar.getProgress());
-                    initGUI(workoutNewRec);
+                if (!repsCountEditText.getText().toString().isEmpty()) {
+                    if ((Integer.parseInt(recordWeight.getText().toString()) * Integer.parseInt(recordRepsCount.getText().toString())) <
+                            (weightSeekBar.getProgress() * Integer.parseInt(repsCountEditText.getText().toString()))) {
+                        Workout workoutNewRec = new Workout("Жим", "Жим лежа",
+                                Integer.parseInt(repsCountEditText.getText().toString()), new Date(),
+                                weightSeekBar.getProgress());
+                        initGUI(workoutNewRec);
+                    }
                 }
             }
         });
