@@ -1,5 +1,6 @@
 package ru.vavtech.septemberworkout.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -95,6 +96,10 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
+        Intent intent = getIntent();
+        int indSpiner =  Integer.parseInt(intent.getStringExtra("workout"));
+        spinner.setSelection(indSpiner);
         spinner.setPrompt(getString(R.string.сhoose_exercise));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

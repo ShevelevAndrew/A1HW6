@@ -34,8 +34,26 @@ public class WorkoutListActivity extends AppCompatActivity {
 
                 //Toast.makeText(WorkoutListActivity.this,"Нажата кнопка "+getString(R.string.pulling_up),Toast.LENGTH_SHORT).show();
                 Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
+                startWorkoutDetailActivity.putExtra("workout","0");
                 startActivity(startWorkoutDetailActivity);
                 
+            }
+        });
+        buttonSquat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
+                startWorkoutDetailActivity.putExtra("workout","1");
+                startActivity(startWorkoutDetailActivity);
+
+            }
+        });
+        buttonBarbellBenchPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
+                startWorkoutDetailActivity.putExtra("workout","2");
+                startActivity(startWorkoutDetailActivity);
             }
         });
 
