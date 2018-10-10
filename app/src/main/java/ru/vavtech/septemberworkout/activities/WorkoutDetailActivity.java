@@ -30,7 +30,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     private Button saveRecordButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +45,11 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 weight.setText(String.valueOf(progress));
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -101,9 +102,10 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 title.setText(data[position]);
-               // Toast.makeText(getBaseContext(), "Position = " + data[position], Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getBaseContext(), "Position = " + data[position], Toast.LENGTH_SHORT).show();
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
             }
