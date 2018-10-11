@@ -50,11 +50,8 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
           getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem item = menu.findItem(R.id.action_share);
-
-
         return true;
     }
-
 
     private void addListeners() {
         weightSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
