@@ -10,11 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -32,9 +34,9 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     private SeekBar weightSeekBar;
     private EditText repsCountEditText;
     private Button saveRecordButton;
+    private ImageButton shareButton;
 
     private ShareActionProvider mShareActionProvider;
-
 
 
     @Override
@@ -48,7 +50,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-          getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem item = menu.findItem(R.id.action_share);
         return true;
     }
@@ -66,6 +68,23 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(WorkoutDetailActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
+                // Create the text message with a string
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Сообщение");
+                sendIntent.setType("text/plain");
+
+                // Verify that the intent will resolve to an activity
+                if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(sendIntent);
+                }
             }
         });
 
@@ -103,6 +122,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         repsCountEditText = findViewById(R.id.workout_detail_reps_count_edit_text);
 
         saveRecordButton = findViewById(R.id.workout_detail_save_button);
+        shareButton = findViewById(R.id.button_share);
 
         final String[] data = {getString(R.string.pulling_up), getString(R.string.squat), getString(R.string.barbell_bench_press)};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
@@ -111,7 +131,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         Intent intent = getIntent();
-        int indSpiner =  Integer.parseInt(intent.getStringExtra("workout"));
+        int indSpiner = Integer.parseInt(intent.getStringExtra("workout"));
         spinner.setSelection(indSpiner);
         spinner.setPrompt(getString(R.string.сhoose_exercise));
 
@@ -123,12 +143,11 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                 // Toast.makeText(getBaseContext(), "Position = " + data[position], Toast.LENGTH_SHORT).show();
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-
-
 
 
     }
