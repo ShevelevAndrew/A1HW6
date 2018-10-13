@@ -48,11 +48,41 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         addListeners();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem item = menu.findItem(R.id.action_share);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_share:
+                Toast.makeText(WorkoutDetailActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
+                shareRecord();
+                return true;
+            case R.id.action_settings:
+                return true;
+            case R.id.action_quit:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void shareRecord() {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Сообщение");
+        sendIntent.setType("text/plain");
+
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
     }
 
     private void addListeners() {
@@ -75,16 +105,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(WorkoutDetailActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
-                // Create the text message with a string
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Сообщение");
-                sendIntent.setType("text/plain");
-
-                // Verify that the intent will resolve to an activity
-                if (sendIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(sendIntent);
-                }
+                shareRecord();
             }
         });
 
