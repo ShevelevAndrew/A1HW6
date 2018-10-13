@@ -2,7 +2,9 @@ package ru.vavtech.septemberworkout.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.vavtech.septemberworkout.Model.Workout;
@@ -36,18 +39,81 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     private Button saveRecordButton;
     private ImageButton shareButton;
 
-    private ShareActionProvider mShareActionProvider;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_detail);
-        Workout workout = new Workout("Подтягивания", "Подтягивания на перекладине", 0, new Date(), 0);
+        Workout workout;
+
+        if (savedInstanceState == null) {
+            workout = new Workout("Подтягивания", "Подтягивания на перекладине", 0, new Date(), 0);
+
+        } else {
+            workout = new Workout(savedInstanceState.getString("title"),
+                    savedInstanceState.getString("description"),
+                    savedInstanceState.getInt("recordRepsCount"),
+                    new Date(),
+                    savedInstanceState.getInt("recordWeight"));
+        }
         initGUI(workout);
         addListeners();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("title",title.getText().toString());
+        outState.putString("description",description.getText().toString());
+        outState.putInt("recordRepsCount", Integer.parseInt(recordRepsCount.getText().toString()));
+        outState.putString("recordDate", recordDate.getText().toString());
+        outState.putInt("recordWeight", Integer.parseInt(recordWeight.getText().toString()));
+        Toast.makeText(this, "onSaveInstanceState", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        Toast.makeText(WorkoutDetailActivity.this, "onStart", Toast.LENGTH_SHORT).show();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Toast.makeText(WorkoutDetailActivity.this, "onResume", Toast.LENGTH_SHORT).show();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Toast.makeText(WorkoutDetailActivity.this, "onPause", Toast.LENGTH_SHORT).show();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Toast.makeText(WorkoutDetailActivity.this, "onStop", Toast.LENGTH_SHORT).show();
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        Toast.makeText(WorkoutDetailActivity.this, "onRestart", Toast.LENGTH_SHORT).show();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Toast.makeText(WorkoutDetailActivity.this, "onDestroy", Toast.LENGTH_SHORT).show();
+        super.onDestroy();
+    }
+
+
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        Toast.makeText(this, "onRestoreInstanceState", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,7 +123,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_share:
                 Toast.makeText(WorkoutDetailActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
                 shareRecord();
@@ -71,6 +137,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     private void shareRecord() {
         // Create the text message with a string

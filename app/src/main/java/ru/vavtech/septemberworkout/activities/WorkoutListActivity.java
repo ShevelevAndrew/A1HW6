@@ -12,7 +12,7 @@ import android.widget.Toast;
 import ru.vavtech.septemberworkout.R;
 
 public class WorkoutListActivity extends AppCompatActivity {
-    public static final String TAG = "WorkoutListActivityLog" ;
+    public static final String TAG = "WorkoutListActivityLog";
     Button buttonPullingUp;
     Button buttonSquat;
     Button buttonBarbellBenchPress;
@@ -28,36 +28,42 @@ public class WorkoutListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         Log.d(TAG,"Вызван onStart");
+        Toast.makeText(WorkoutListActivity.this,"onStart",Toast.LENGTH_SHORT).show();
         super.onStart();
     }
 
     @Override
     protected void onResume() {
         Log.d(TAG,"Вызван onResume");
+        Toast.makeText(WorkoutListActivity.this,"onResume",Toast.LENGTH_SHORT).show();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
         Log.d(TAG,"Вызван onPause");
+        Toast.makeText(WorkoutListActivity.this,"onPause",Toast.LENGTH_SHORT).show();
         super.onPause();
     }
 
     @Override
     protected void onStop() {
         Log.d(TAG,"Вызван onStop");
+        Toast.makeText(WorkoutListActivity.this,"onStop",Toast.LENGTH_SHORT).show();
         super.onStop();
     }
 
     @Override
     protected void onRestart() {
         Log.d(TAG,"Вызван onRestart");
+        Toast.makeText(WorkoutListActivity.this,"onRestart",Toast.LENGTH_SHORT).show();
         super.onRestart();
     }
 
     @Override
     protected void onDestroy() {
         Log.d(TAG,"Вызван onDestroy");
+        Toast.makeText(WorkoutListActivity.this,"onDestroy",Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 
