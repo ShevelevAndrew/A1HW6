@@ -75,7 +75,6 @@ public class WorkoutListActivity extends AppCompatActivity {
         buttonPullingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(WorkoutListActivity.this,"Нажата кнопка "+getString(R.string.pulling_up),Toast.LENGTH_SHORT).show();
                 Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
                 startWorkoutDetailActivity.putExtra("workout", "0");
                 startActivity(startWorkoutDetailActivity);

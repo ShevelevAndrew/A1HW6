@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +37,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     private EditText repsCountEditText;
     private Button saveRecordButton;
     private ImageButton shareButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +105,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-
-
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onRestoreInstanceState(savedInstanceState, persistentState);
@@ -137,7 +133,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     private void shareRecord() {
         // Create the text message with a string
@@ -219,8 +214,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         Intent intent = getIntent();
-        int indSpiner = Integer.parseInt(intent.getStringExtra("workout"));
-        spinner.setSelection(indSpiner);
+        spinner.setSelection(Integer.parseInt(intent.getStringExtra("workout")));
         spinner.setPrompt(getString(R.string.сhoose_exercise));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
