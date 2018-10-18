@@ -59,8 +59,8 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                     new Date(),
                     savedInstanceState.getInt("recordWeight"));
         }
-       // initGUI(workout);
-       // addListeners();
+        initGUI(workout);
+        addListeners();
 
         //
 //        mActionBarBackgroundDrawable = getResources().getDrawable(R.drawable.ic_launcher_background);
@@ -79,7 +79,6 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             mActionBarBackgroundDrawable.setAlpha(newAlpha);
         }
     };
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
