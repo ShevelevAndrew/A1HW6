@@ -30,7 +30,6 @@ class WorkoutViewHolder extends RecyclerView.ViewHolder {
         recordRepsCount = itemView.findViewById(R.id.list_item_record_reps_count);
         recordWeight = itemView.findViewById(R.id.list_item_record_weight);
         cardView = itemView.findViewById(R.id.cardView);
-
     }
 
     public void bindView(Workout workout, final int index) {
@@ -44,8 +43,8 @@ class WorkoutViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 Context context = itemView.getContext();
-                Intent intent = new Intent(context,WorkoutDetailActivity.class);
-                intent.putExtra(Constants.WORKOUT_INDEX,index);
+                Intent intent = new Intent(context, WorkoutDetailActivity.class);
+                intent.putExtra(Constants.WORKOUT_INDEX, index);
                 context.startActivity(intent);
             }
         });

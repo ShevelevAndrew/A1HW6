@@ -50,7 +50,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_workout_detail);
 
         Intent intent = getIntent();
-        int index = intent.getIntExtra(Constants.WORKOUT_INDEX,0);
+        int index = intent.getIntExtra(Constants.WORKOUT_INDEX, 0);
         Workout workout = WorkoutList.getInstance().getWorkouts().get(index);
 
 //        Workout workout = WorkoutList
@@ -59,8 +59,8 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 //                .get(getIntent()
 //                        .getIntExtra("workout_index",0));
 
-       initGUI(workout);
-       addListeners();
+        initGUI(workout);
+        addListeners();
 
     }
 
@@ -76,8 +76,8 @@ public class WorkoutDetailActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("title",title.getText().toString());
-        outState.putString("description",description.getText().toString());
+        outState.putString("title", title.getText().toString());
+        outState.putString("description", description.getText().toString());
         outState.putInt("recordRepsCount", Integer.parseInt(recordRepsCount.getText().toString()));
         outState.putString("recordDate", recordDate.getText().toString());
         outState.putInt("recordWeight", Integer.parseInt(recordWeight.getText().toString()));
