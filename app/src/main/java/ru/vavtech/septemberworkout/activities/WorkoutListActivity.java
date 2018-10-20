@@ -2,101 +2,93 @@ package ru.vavtech.septemberworkout.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import ru.vavtech.septemberworkout.Model.Workout;
+import ru.vavtech.septemberworkout.Model.WorkoutList;
 import ru.vavtech.septemberworkout.R;
 
 public class WorkoutListActivity extends AppCompatActivity {
     public static final String TAG = "WorkoutListActivityLog";
-    Button buttonPullingUp;
-    Button buttonSquat;
-    Button buttonBarbellBenchPress;
+    private RecyclerView recyclerView;
+    WorkoutAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
-        //setContentView(R.layout.activity_workout_list);
+        setContentView(R.layout.activity_workout_list);
 
-        //initGUI();
+        adapter = new WorkoutAdapter();
+
+        recyclerView = findViewById(R.id.recycler_view);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+
     }
 
-    @Override
-    protected void onStart() {
-        Log.d(TAG,"Вызван onStart");
-        Toast.makeText(WorkoutListActivity.this,"onStart",Toast.LENGTH_SHORT).show();
-        super.onStart();
+    private static class WorkoutAdapter extends RecyclerView.Adapter<WorkoutViewHOlder> {
+        List<Workout> workoutList = WorkoutList.getInstance().getWorkouts();
+
+        @NonNull
+        @Override
+        public WorkoutViewHOlder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.list_item,
+                    viewGroup,
+                    false
+            );
+            return new WorkoutViewHOlder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull WorkoutViewHOlder workoutViewHOlder, int index) {
+            workoutViewHOlder.bindView(workoutList.get(index));
+        }
+
+        @Override
+        public int getItemCount() {
+            return workoutList != null ? workoutList.size() : 0;
+        }
     }
 
-    @Override
-    protected void onResume() {
-        Log.d(TAG,"Вызван onResume");
-        Toast.makeText(WorkoutListActivity.this,"onResume",Toast.LENGTH_SHORT).show();
-        super.onResume();
-    }
+    private static class WorkoutViewHOlder extends RecyclerView.ViewHolder {
+        TextView title;
+        TextView description;
+        TextView recordDate;
+        TextView recordRepsCount;
+        TextView recordWeight;
 
-    @Override
-    protected void onPause() {
-        Log.d(TAG,"Вызван onPause");
-        Toast.makeText(WorkoutListActivity.this,"onPause",Toast.LENGTH_SHORT).show();
-        super.onPause();
-    }
+        public WorkoutViewHOlder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.list_item_title_text_view);
+            description = itemView.findViewById(R.id.list_item_deskription_text_view);
+            recordDate = itemView.findViewById(R.id.list_item_record_date);
+            recordRepsCount = itemView.findViewById(R.id.list_item_record_reps_count);
+            recordWeight = itemView.findViewById(R.id.list_item_record_weight);
+        }
 
-    @Override
-    protected void onStop() {
-        Log.d(TAG,"Вызван onStop");
-        Toast.makeText(WorkoutListActivity.this,"onStop",Toast.LENGTH_SHORT).show();
-        super.onStop();
-    }
-
-    @Override
-    protected void onRestart() {
-        Log.d(TAG,"Вызван onRestart");
-        Toast.makeText(WorkoutListActivity.this,"onRestart",Toast.LENGTH_SHORT).show();
-        super.onRestart();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG,"Вызван onDestroy");
-        Toast.makeText(WorkoutListActivity.this,"onDestroy",Toast.LENGTH_SHORT).show();
-        super.onDestroy();
-    }
-
-    private void initGUI() {
-        buttonPullingUp = findViewById(R.id.button_pulling_up);
-        buttonSquat = findViewById(R.id.button_squat);
-        buttonBarbellBenchPress = findViewById(R.id.button_barbell_bench_press);
-
-        buttonPullingUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
-                startWorkoutDetailActivity.putExtra("workout", "0");
-                startActivity(startWorkoutDetailActivity);
-            }
-        });
-        buttonSquat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
-                startWorkoutDetailActivity.putExtra("workout", "1");
-                startActivity(startWorkoutDetailActivity);
-            }
-        });
-        buttonBarbellBenchPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startWorkoutDetailActivity = new Intent(WorkoutListActivity.this, WorkoutDetailActivity.class);
-                startWorkoutDetailActivity.putExtra("workout", "2");
-                startActivity(startWorkoutDetailActivity);
-            }
-        });
-
+        public void bindView(Workout workout) {
+            title.setText(workout.getTitle());
+            description.setText(workout.getDescription());
+            recordWeight.setText(String.valueOf(workout.getRecordWeight()));
+            recordRepsCount.setText(String.valueOf(workout.getRecordRepsCount()));
+            recordDate.setText(workout.getFormattedRecordDate());
+        }
     }
 }
