@@ -68,11 +68,11 @@ public class WorkoutListActivity extends AppCompatActivity {
     }
 
     private static class WorkoutViewHOlder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView description;
-        TextView recordDate;
-        TextView recordRepsCount;
-        TextView recordWeight;
+        private TextView title;
+        private TextView description;
+        private TextView recordDate;
+        private TextView recordRepsCount;
+        private TextView recordWeight;
 
         public WorkoutViewHOlder(@NonNull View itemView) {
             super(itemView);
