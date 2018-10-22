@@ -1,19 +1,11 @@
 package ru.vavtech.septemberworkout.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import ru.vavtech.septemberworkout.R;
 import ru.vavtech.septemberworkout.list.WorkoutAdapter;
@@ -27,7 +19,6 @@ public class WorkoutListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_workout_list);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
