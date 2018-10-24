@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.WorkoutDetailActivity"
+            android:name=".fragments.WorkoutDetailFragment"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".fragments.WorkoutListFragment"
             android:windowSoftInputMode="stateHidden"></activity>
