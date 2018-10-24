@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.util.Date;
 
 import ru.vavtech.septemberworkout.Model.Workout;
@@ -51,7 +54,7 @@ public class WorkoutDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_workout_detail, container, false);
+        View root = inflater.inflate(R.layout.fragment_workout_detail, container, false);
         workout = WorkoutList.getInstance().getWorkouts().get(getArguments().getInt(WORKOUT_INDEX));
         initGUI(root, workout);
         addListeners();
@@ -126,7 +129,12 @@ public class WorkoutDetailFragment extends Fragment {
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareRecord();
+                YoYo.with(Techniques
+                        .RubberBand)
+                        .duration(700)
+                        .repeat(2)
+                        .playOn(shareButton);
+               // shareRecord();
             }
         });
 
